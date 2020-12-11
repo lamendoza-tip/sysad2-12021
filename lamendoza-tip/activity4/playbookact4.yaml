@@ -1,0 +1,32 @@
+---
+- name: Install for All VMs
+  hosts: all
+
+  tasks:
+    - name: Install boto, ansible and openstack using pip
+      pip:
+        name:
+          - ansible
+          - boto
+          - python-openstackclient
+
+- name: Install Java CentOS
+  hosts: centos
+
+  tasks:
+    - name: Install Java
+      yum:
+        name: java-1.8.0-openjdk
+        state: present
+        update_cache: yes
+
+- name: Install Java Ubuntu
+  hosts: ubuntu
+  
+  tasks:
+    - name: Install Java
+      apt:
+        name: default-jre
+        state: present
+        update_cache: yes
+
