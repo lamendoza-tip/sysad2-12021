@@ -1,0 +1,14 @@
+---
+- name: Ubuntu install packages
+  apt:
+    name: default-jre
+    state: latest
+
+- name: Ubuntu install boto, ansible and openstack
+  pip:
+    name:
+    - boto
+    - ansible
+    - python-openstackclient
+
+# tasks file for roles/ubuntuinstall
