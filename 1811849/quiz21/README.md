@@ -16,4 +16,5 @@
 1. To learn more Ad-hoc commands use this link: <https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html>  
 1. Try to ping the remote user using the command `ansible all -m ping` . If the configuration and inventory are done properly the output should return with a `pong`.  
 1. To input linux commands use the shell module, example: `ansible all -m shell -a "whoami"`.  
-
+  
+### Louis Adrian Mendoza  
