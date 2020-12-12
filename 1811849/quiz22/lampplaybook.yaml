@@ -1,0 +1,41 @@
+---
+- name: Install LAMP on Ubuntu
+  hosts: all
+  tasks:
+    - name: Install Apache2, MySQL server, php and php-mysql
+      become: yes
+      apt:
+        pkg:
+          - apache2
+          - mysql-server
+          - php
+          - php-mysql
+        state: present
+        update_cache: yes
+
+    - name: Run Apache
+      become: yes
+      become_user: root
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+
+    - name: Run MySQL
+      become: yes
+      become_user: root
+      service:
+        name: mysql
+        state: started
+        enabled: yes
+
+    - name: Target directory
+      file: path=/var/www/html state=directory mode=0755
+
+    - name: index.html
+      become: yes
+      become_user: root
+      copy:
+        src: /tmp/index.html
+        dest: /var/www/html/index.html
+
