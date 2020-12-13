@@ -10,5 +10,5 @@
 * The playbook file for LAMP stack
 
 **roles**
-* Directory of the roles for the playbook
+* 2 roles included, installation of LAMP and running of LAMP services
 
