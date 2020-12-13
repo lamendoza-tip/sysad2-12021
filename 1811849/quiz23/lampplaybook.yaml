@@ -1,0 +1,15 @@
+---
+- name: Install apache2
+  hosts: all
+  roles:
+    - lampquiz23roles
+
+- name: Install MySQL
+  hosts: all
+  roles:
+    - lampquiz23roles
+
+- name: Install php and php-mysql
+  hosts: all
+  roles:
+    - lampquiz23roles

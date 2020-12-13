@@ -1,0 +1,11 @@
+---
+- name: Install LAMP stack
+  apt:
+    name:
+      - apache2
+      - mysql-server
+      - php
+      - php-mysql
+
+
+# tasks file for roles/lampquiz23roles
