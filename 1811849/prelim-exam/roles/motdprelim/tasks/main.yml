@@ -1,0 +1,7 @@
+---
+- name: Create a motd
+  become: yes
+  command: sh -c 'echo "Hello {{ username }} , Welcome to SYSAD" > /etc/motd'
+
+
+# tasks file for roles/motdprelim

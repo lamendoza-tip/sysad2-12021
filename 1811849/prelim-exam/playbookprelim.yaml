@@ -1,0 +1,28 @@
+---
+- name: Include config.yaml
+  hosts: all
+  tasks:
+    - name: Include config.yaml
+      include_vars:
+        file: config.yaml
+
+- name: Install and use, python3 and pip3
+  hosts: all
+  roles:
+    - pythonprelim
+
+- name: Install Java open-jdk
+  hosts: all
+  roles:
+    - javaprelim
+
+- name: Create Motd
+  hosts: all
+  roles:
+    - motdprelim
+
+- name: Create User
+  hosts: all
+  roles:
+    - userprelim
+
