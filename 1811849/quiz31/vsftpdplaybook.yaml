@@ -1,0 +1,63 @@
+---
+- name: Install and configure vsftpd service
+  hosts: ubuntu
+
+  tasks:
+    - name: Install updated vsftpd
+      apt:
+        name: vsftpd
+        state: latest
+        update_cache: yes
+
+    - name: Stop firewall
+      service:
+        name: ufw
+        state: stopped
+        enabled: no
+
+    - name: Create ftp user louis
+      user:
+        name: louis
+        comment: "Louis Adrian Mendoza"
+        password: $6$br4JyghNQjTf.k$G0Zj1axBely1GZmhFqLXmyXievz7kkiDRq5.EUmrdr43gwKLX8U4qvrfpC8SS1C3Mg0HBSjXOj/td3YOWK0jd1
+
+    - name: append DenyUsers louis
+      lineinfile:
+        path: /etc/ssh/ssh_config
+        line: "DenyUsers louis"
+      register: sshd_config
+
+    - name: Restart sshd
+      service:
+        name: sshd
+        state: restarted
+      when: sshd_config.changed
+
+    - name: Create folder for ftp
+      file:
+        path: /home/louis/ftp
+        state: directory
+        owner: nobody
+        group: nogroup
+        mode: '0555'
+
+    - name: Create files on ftp
+      file:
+        path: /home/louis/ftp/files
+        state: directory
+        owner: louis
+        group: louis
+
+    - name: Render /etc/vsftpd.conf
+      copy:
+        src: vsftpd.conf
+        dest: /etc/vsftpd.conf
+      register: vsftpd_config
+
+    - name: Restart vsftpd
+      service:
+        name: vsftpd
+        state: restarted
+      when: vsftpd_config.changed
+
+
