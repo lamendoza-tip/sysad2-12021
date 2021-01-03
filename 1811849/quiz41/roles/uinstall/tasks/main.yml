@@ -1,0 +1,70 @@
+---
+- name: Install Nagios Core Packages
+  apt:
+    name:
+      - build-essential
+      - apache2
+      - php
+      - openssl
+      - perl
+      - make
+      - php-gd
+      - libgd-dev
+      - libapache2-mod-php
+      - libperl-dev
+      - libssl-dev
+      - daemon
+      - wget
+      - apache2-utils
+      - unzip
+    state: latest
+    update_cache: yes
+
+- name: Add nagios group
+  group:
+    name: nagios
+    state: present
+
+- name: Add nagcmd group
+  group:
+    name: nagcmd
+    state: present
+
+- name: Create Nagios User
+  user:
+    name: nagios
+    shell: /bin/bash
+    comment: nagios user
+    group: nagios
+    password: $6$xyz$lwqfW2.gIYVOD99DH13FibNxluExIYyEof55/88je0.pmN0wB1hE5aOuXwMACztG6ejB5TU5Vr41eO0m16Tbu.
+
+- name: Add nagios user
+  user:
+    name: nagios
+    group: nagcmd
+    append: yes
+
+- name: Add www-data user
+  user:
+    name: www-data
+    group: nagcmd
+    append: yes
+
+- name: Create download dir
+  file:
+    path: /downloads
+    state: directory
+    owner: nobody
+    group: nogroup
+
+- name: Download Nagios
+  get_url:
+    url: http://prdownloads.sourceforge.net/sourceforge/nagios/nagios-4.2.1.tar.gz
+    dest: /downloads
+
+- name: Download Nagios Plugins
+  get_url:
+    url: https://nagios-plugins.org/download/nagios-plugins-2.3.3.tar.gz
+    dest: /downloads
+
+# tasks file for roles/uinstall

@@ -1,0 +1,7 @@
+---
+- name: Install Nagios
+  hosts: ubuntu
+  roles:
+    - uinstall
+    - usetup
+    - uplugin
