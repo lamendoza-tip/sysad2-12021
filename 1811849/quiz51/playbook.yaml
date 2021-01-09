@@ -1,0 +1,8 @@
+---
+- hosts: ubuntu
+  roles:
+    - estackubuntu
+
+- hosts: centos
+  roles:
+    - estackcentos
