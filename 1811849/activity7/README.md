@@ -13,7 +13,6 @@
     - usetup
     - uplugin
     - ugrafana
-    - ulampstack
     - cestack
     - cgrafana
-    - clampstack
+    - cnagios

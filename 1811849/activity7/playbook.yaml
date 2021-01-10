@@ -8,10 +8,9 @@
     - usetup
     - uplugin
     - ugrafana
-    - ulampstack
 
 - hosts: centos
   roles:
     - cestack
     - cgrafana
-    - clampstack
+    - cnagios
