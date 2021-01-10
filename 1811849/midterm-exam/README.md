@@ -1,9 +1,19 @@
 # Directory Summary
 
 - ansible.cfg
-- quiz41inventory
-- nagioscore.yaml
+- midterminventory
+- midtermplaybook.yaml
+- config.yaml
+- grafana.repo
+- influxdb.repo
+- prometheus.repo
 - roles
+    - uestack
     - uinstall
     - usetup
     - uplugin
+    - ugrafana
+    - ulampstack
+    - cestack
+    - cgrafana
+    - clampstack

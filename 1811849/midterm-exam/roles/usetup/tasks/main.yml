@@ -53,14 +53,13 @@
 - name: Add account
   htpasswd:
     path: /usr/local/nagios/etc/htpasswd.users
-    name: user
-    password: password
+    name: "{{ user }}"
+    password: "{{ pass }}"
     crypt_scheme: md5_crypt
 
 - name: Restart apache2
   service:
     name: apache2
-    enabled: yes
     state: restarted
 
 
