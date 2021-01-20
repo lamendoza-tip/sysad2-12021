@@ -1,0 +1,17 @@
+prelimexam_repo: https://github.com/lamendoza-tip/sysad2-12021.git
+
+ftp_user: admin
+
+ftp_pass: $6$FXeqnC44$TgjjqiwbX94kTqzV8tQ2tDyGO1pGaXAzF.sgmK/irYdhJvpYlw.G9U9rdMZcFvjIvIcMjikzSyTl9QYy3l0
+
+writeable_chroot: allow_writeable_chroot=YES
+
+ftp_config: "allow_writeable_chroot=YES\npasv_min_port=30000\npasv_max_port=31000\nuserlist_file=/etc/vsftpd/user_list\nuserlist_deny=NO"
+
+ftp_debian: "pasv_enable=Yes\npasv_min_port=10000\npasv_max_port=10100\nallow_writeable_chroot=YES\nssl_tlsv1=YES\nssl_sslv2=NO\nssl_sslv3=NO"
+
+nagios_pass: $6$n9QjLyD7TK4JO$RB9j4arrjXGvAzU3fp3LeHQ4j1k0LvGkcdfDU//vReR20.ulPVtqcA69nYSPv.1Vi5oNm0TErDY9y8vnxdAbK.
+
+nagiosadmin_pass: password
+
+user: lamendoza-tip

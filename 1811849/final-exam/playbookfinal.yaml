@@ -1,0 +1,28 @@
+---
+- hosts: centos
+  vars_files:
+    - ./config.yaml
+  roles:
+ #   - cclonerepo
+ #   - centerprise
+ #   - cmonitoring
+ #   - changemotd
+
+- hosts: debian
+  vars_files:
+    - ./config.yaml
+  roles:
+ #   - dclonerepo
+ #   - denterprise
+ #   - dmonitoring
+ #   - changemotd
+
+- hosts: opensuse
+  vars_files:
+    - ./config.yaml
+  roles:
+ #   - oclonerepo
+ #   - oenterprise
+    - omonitoring
+    - changemotd
+

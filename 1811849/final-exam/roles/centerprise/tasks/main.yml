@@ -1,0 +1,53 @@
+---
+- name: Install vsftpd on centos
+  yum:
+    name: vsftpd
+    state: latest
+    update_cache: yes
+
+- name: Run vsftpd service
+  service:
+    name: vsftpd
+    state: started
+    enabled: yes
+
+- name: Add ftp user
+  user:
+    name: '{{ ftp_user }}'
+    password: '{{ ftp_pass }}'
+
+- name: Deny user to access ssh
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    line: "DenyUsers '{{ ftp_user }}'"
+  register: successfully_denied
+
+- name: Restart sshd service
+  service:
+    name: sshd
+    state: restarted
+  when: successfully_denied.changed
+
+- name: Copy the default configuration file
+  copy:
+    src: /etc/vsftpd/vsftpd.conf
+    dest: /etc/vsftpd/vsftpd.conf.default
+    remote_src: True
+ 
+- name: Limit ftp users to their own home directory
+  replace:
+    path: /etc/vsftpd/vsftpd.conf
+    regexp: '#chroot_local_user=YES'
+    replace: 'chroot_local_user=YES'
+
+- name: Configure ftp file
+  lineinfile:
+    path: /etc/vsftpd/vsftpd.conf
+    line: '{{ ftp_config }}'
+
+- name: Restart vsftpd
+  service:
+    name: vsftpd
+    state: restarted
+
+# tasks file for roles/centerprise
